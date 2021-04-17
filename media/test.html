@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+    <script src="./flv.min.js"></script>
+    <script src="https://unpkg.com/videojs-flvjs/dist/videojs-flvjs.min.js"></script>
+    <script src="./streamedian.min.js"></script>
+    <script src="./videojs-streamedianjs.min.js"></script>
+  </head>
+  <body>
+    <video id="my-video1" class="video-js">
+      <source
+        src="https://hls01open.ys7.com/openlive/f01018a141094b7fa138b9d0b856507b.m3u8"
+        type="application/vnd.apple.mpegurl"
+      />
+      <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a
+        web browser that
+        <a href="https://videojs.com/html5-video-support/" target="_blank"
+          >supports HTML5 video</a
+        >
+      </p>
+    </video>
+    <video id="my-video2" class="video-js">
+      <source
+        src="https://flvopen.ys7.com:9188/openlive/c447724d034446ce8f40f02a661d8eaf.flv"
+        type="video/x-flv"
+      />
+      <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a
+        web browser that
+        <a href="https://videojs.com/html5-video-support/" target="_blank"
+          >supports HTML5 video</a
+        >
+      </p>
+    </video>
+    <video id="my-video3" class="video-js">
+      <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a
+        web browser that
+        <a href="https://videojs.com/html5-video-support/" target="_blank"
+          >supports HTML5 video</a
+        >
+      </p>
+    </video>
+  </body>
+  <script>
+    let options = {
+      techOrder: ['html5', 'Flvjs', 'Streamedianjs'],
+      autoplay: true,
+      controls: true, // 是否显示控制条
+      language: 'zh-CN', // 设置语言
+      muted: true, // 是否静音
+      width: '400px',
+      height: '300px',
+      controlBar: {
+        // progressControl: false,
+        // liveDisplay: false,
+        remainingTimeDisplay: false,
+      },
+    }
+    ;(function (window, videojs) {
+      let player1 = videojs('my-video1', options)
+      let player2 = videojs('my-video2', options)
+      let player3 = videojs('my-video3', options)
+      player3.src({
+        src: 'rtsp://10.45.154.187:555/live/32011500001110000014-1/0',
+        type: 'video/rtsp',
+        withCredentials: false,
+        socket: 'ws://10.45.154.187:8060/ws',
+        bufferDuration: 5,
+      })
+    })(window, window.videojs)
+  </script>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "videojs-streamedianjs",
+  "author": "mister-ben &lt;git@misterben.me&gt;",
+  "license": "Apache-2.0",
+  "main": [
+    "dist/videojs-streamedianjs.min.js"
+  ],
+  "keywords": [
+    "videojs",
+    "videojs-plugin"
+  ]
+}
+

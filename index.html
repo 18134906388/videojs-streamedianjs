@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>videojs-streamedianjs Demo</title>
+    <link href="/node_modules/video.js/dist/video-js.css" rel="stylesheet" />
+  </head>
+  <body>
+    <video
+      id="videojs-streamedianjs-player"
+      class="video-js"
+    ></video>
+    <ul>
+      <li><a href="/test/">Run unit tests in browser.</a></li>
+    </ul>
+    <script src="/node_modules/video.js/dist/video.js"></script>
+    <script src="./streamedian.min.js"></script>
+    <script src="/dist/videojs-streamedianjs.js"></script>
+    <script>
+      ;(function (window, videojs) {
+        var player = (window.player = videojs('videojs-streamedianjs-player', {
+          techOrder: ['html5', 'Streamedianjs'],
+          streamedianjs: {
+            mediaDataSource: {
+              isLive: true,
+              cors: true,
+              withCredentials: false,
+            },
+            // config: {},
+          },
+          autoplay: true,
+          controls: true, // 是否显示控制条
+          language: 'zh-CN', // 设置语言
+          muted: true, // 是否静音
+          width: '400px',
+          height: '300px',
+          controlBar: {
+            progressControl: false,
+            liveDisplay: true,
+            remainingTimeDisplay: false
+          }
+        }))
+        this.player.src({
+          src: 'rtsp://10.45.154.187:555/live/32011500001110000014-1/0',
+          type: 'video/rtsp',
+          withCredentials: false,
+          socket: 'ws://10.45.154.187:8060/ws',
+          bufferDuration: 5,
+        })
+      })(window, window.videojs)
+    </script>
+  </body>
+</html>
