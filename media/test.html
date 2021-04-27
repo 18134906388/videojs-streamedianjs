@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
-    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+    <link href="./video-js.css" rel="stylesheet" />
+    <link href="./video-js-reset.css" rel="stylesheet" />
+    <script src="./video.min.js"></script>
     <script src="./flv.min.js"></script>
-    <script src="https://unpkg.com/videojs-flvjs/dist/videojs-flvjs.min.js"></script>
+    <script src="./videojs-flvjs.min.js"></script>
     <script src="./streamedian.min.js"></script>
     <script src="./videojs-streamedianjs.min.js"></script>
   </head>
@@ -28,7 +29,7 @@
     </video>
     <video id="my-video2" class="video-js">
       <source
-        src="https://flvopen.ys7.com:9188/openlive/c447724d034446ce8f40f02a661d8eaf.flv"
+        src="https://flvopen.ys7.com:9188/openlive/376d82d20a6c479b829222acca274b61.hd.flv"
         type="video/x-flv"
       />
       <p class="vjs-no-js">
@@ -61,12 +62,38 @@
       controlBar: {
         // progressControl: false,
         // liveDisplay: false,
-        remainingTimeDisplay: false,
+		    fullscreenToggle: true, // 全屏按钮，默认为true
+        pictureInPictureToggle: true, // 画中画按钮，默认为true
+        volumePanel: true, // 声音面板
+        currentTimeDisplay: false, // 当前播放时间
+        timeDivider: false, // 时间分割线
+        durationDisplay: false, // 总时间
+        remainingTimeDisplay: false, // 剩余时间
       },
     }
     ;(function (window, videojs) {
+      // 自定义按钮--start
+      const Button = videojs.getComponent('Button')
+      const Component = videojs.getComponent('Component')
+      class VideoBackButton extends Button {
+        constructor(player, options = {}) {
+          super(player, options)
+          console.log(player, options)
+          debugger
+          this.controlText('视频回放')
+        }
+        buildCSSClass() {
+          return 'vjs-video-back'
+        }
+        handleClick() {
+          console.log('Previous')
+        }
+      }
+      Component.registerComponent('VideoBackButton', VideoBackButton)
+      // 自定义按钮--end
       let player1 = videojs('my-video1', options)
-      let player2 = videojs('my-video2', options)
+      player1.getChild('controlBar').addChild('VideoBackButton', {}, 4)
+      window.player2 = videojs('my-video2', options)
       let player3 = videojs('my-video3', options)
       player3.src({
         src: 'rtsp://10.45.154.187:555/live/32011500001110000014-1/0',
