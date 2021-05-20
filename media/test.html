@@ -16,8 +16,8 @@
   <body>
     <video id="my-video1" class="video-js">
       <source
-        src="https://hls01open.ys7.com/openlive/f01018a141094b7fa138b9d0b856507b.m3u8"
-        type="application/vnd.apple.mpegurl"
+        src="https://yunqivedio.alicdn.com/2017yq/v2/0x0/96d79d3f5400514a6883869399708e11/96d79d3f5400514a6883869399708e11.m3u8"
+        type="application/x-mpegURL"
       />
       <p class="vjs-no-js">
         To view this video please enable JavaScript, and consider upgrading to a
@@ -29,7 +29,7 @@
     </video>
     <video id="my-video2" class="video-js">
       <source
-        src="https://flvopen.ys7.com:9188/openlive/376d82d20a6c479b829222acca274b61.hd.flv"
+        src="https://mister-ben.github.io/videojs-flvjs/bbb.flv"
         type="video/x-flv"
       />
       <p class="vjs-no-js">
@@ -51,6 +51,10 @@
     </video>
   </body>
   <script>
+    // hls点播测试地址https://yunqivedio.alicdn.com/2017yq/v2/0x0/96d79d3f5400514a6883869399708e11/96d79d3f5400514a6883869399708e11.m3u8
+    // hls直播测试地址https://hls01open.ys7.com/openlive/f01018a141094b7fa138b9d0b856507b.m3u8
+    // flv点播测试地址https://mister-ben.github.io/videojs-flvjs/bbb.flv
+    // flv直播测试地址https://flvopen.ys7.com:9188/openlive/376d82d20a6c479b829222acca274b61.hd.flv
     let options = {
       techOrder: ['html5', 'Flvjs', 'Streamedianjs'],
       autoplay: true,
@@ -79,7 +83,6 @@
         constructor(player, options = {}) {
           super(player, options)
           console.log(player, options)
-          debugger
           this.controlText('视频回放')
         }
         buildCSSClass() {
