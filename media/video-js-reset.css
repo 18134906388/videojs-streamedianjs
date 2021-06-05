@@ -1,9 +1,3 @@
-.video-js .vjs-tech {
-  position: relative!important;
-  height: auto!important;
-  pointer-events: none;
-}
-
 .video-js .vjs-video-back{
   width: 6em;
   text-align: left;
