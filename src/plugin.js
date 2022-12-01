@@ -44,12 +44,12 @@ class Streamedianjs extends Html5 {
     }
 
     const mediaDataSource = this.options_.mediaDataSource;
-    const config = this.options_.config;
+    const config = JSON.parse(src);
 
     mediaDataSource.type = mediaDataSource.type === undefined ? 'rtsp' : mediaDataSource.type;
-    mediaDataSource.url = src;
-    this.el_.src = src;
-    this.rtspPlayer = window.Streamedian.player(this.el_, this.options_.source);
+    mediaDataSource.url = config.src;
+    this.el_.src = config.src;
+    this.rtspPlayer = window.Streamedian.player(this.el_, config);
   }
 
   /**

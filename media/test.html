@@ -11,7 +11,7 @@
     <script src="./flv.min.js"></script>
     <script src="./videojs-flvjs.min.js"></script>
     <script src="./streamedian.min.js"></script>
-    <script src="./videojs-streamedianjs.min.js"></script>
+    <script src="./videojs-streamedianjs.js"></script>
   </head>
   <body>
     <video id="my-video1" class="video-js">
@@ -98,12 +98,15 @@
       player1.getChild('controlBar').addChild('VideoBackButton', {}, 4)
       window.player2 = videojs('my-video2', options)
       let player3 = videojs('my-video3', options)
-      player3.src({
+      let opt = {
         src: 'rtsp://10.45.154.187:555/live/32011500001110000014-1/0',
-        type: 'video/rtsp',
         withCredentials: false,
         socket: 'ws://10.45.154.187:8060/ws',
         bufferDuration: 5,
+      }
+      player3.src({
+        src: JSON.stringify(opt),
+        type: 'video/rtsp',
       })
     })(window, window.videojs)
   </script>
